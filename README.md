@@ -1,2 +1,2 @@
 # zsh-config
-A basic zsh configuration with archlinux configuration
+A basic zsh configuration with archlinux prompt.
