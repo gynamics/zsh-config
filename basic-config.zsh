@@ -76,7 +76,7 @@ PROMPT="%B%F{white}(%B%F{blue}%~ %B%F{cyan}%#%b%f%k "
 # if you want they be dynamic, add a zsh precmd hook for update.
 _RPROMPT_COMPONENTS=(
   "%B%(?.%F{blue}⦮.%F{red}%?)"
-  "%B%F{white}%n%B%F{blue}@%B%F{yellow}$(ip route|grep default|
+  "%B%F{white}%n%B%F{blue}@%B%F{yellow}$(ip route|grep -m1 default|
     sed -r 's/.*src ([0-9\.]+) .*/\1/')"
   "%B%F{white}<- %B%F{cyan}$(who -m|cut -d'(' -f2|cut -d ')' -f1)"
   "%B%F{blue}<%B%F{white})"
