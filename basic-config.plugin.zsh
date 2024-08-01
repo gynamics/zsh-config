@@ -83,7 +83,7 @@ else
 fi
 
 _RPROMPT_COMPONENTS=(
-  "%B%(?.%F{blue}⦮.%F{red}%?)"
+  "%B%(?.%F{blue}>.%F{red}%?)"
   "%B%F{white}%n%B%F{blue}@%B%F{yellow}${SINK_IP}"
   "%B%F{white}<- %B%F{cyan}${SOURCE_IP}"
   "%B%F{blue}<%B%F{white})"
@@ -100,7 +100,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
     alias diff='diff --color=auto'
-    alias ip='ip --color=auto' 
+    alias ip='ip --color=auto'
     alias pacman='pacman --color=auto'
 
     export LESS='-R' # enable ANSI escape sequences for less
