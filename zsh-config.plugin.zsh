@@ -70,33 +70,34 @@ zstyle :zle:edit-command-line editor $EDITOR
 bindkey '^X^E' edit-command-line
 # btw, press ESC RET can wrap newline without evaluation
 
-# archlinux-style prompt
-PROMPT="%B%F{white}(%B%F{blue}%~ %B%F{cyan}%#%b%f%k "
-
-function set-rprompt() {
+# an arch-style prompt
+function set-prompt:arch-sky() {
+  local source_ip
+  local sink_ip
   if [[ -z ${SSH_CONNECTION} ]]; then
-    SOURCE_IP=$(who -m|cut -d'(' -f2|cut -d ')' -f1)
-    SINK_IP=$(ip route|grep -m1 default|sed -r 's/.*src ([0-9\.]+) .*/\1/')
+    source_ip=$(who -m|cut -d'(' -f2|cut -d ')' -f1)
+    sink_ip=$(ip route|grep -m1 default|sed -r 's/.*src ([0-9\.]+) .*/\1/')
   else
-    SOURCE_IP=$(echo ${SSH_CONNECTION}|cut -d ' ' -f1)
-    SINK_IP=$(echo ${SSH_CONNECTION}|cut -d' ' -f3)
+    source_ip=$(echo ${SSH_CONNECTION}|cut -d ' ' -f1)
+    sink_ip=$(echo ${SSH_CONNECTION}|cut -d' ' -f3)
   fi
 
-  _RPROMPT_COMPONENTS=(
+  PROMPT="%B%F{white}(%B%F{blue}%~ %B%F{cyan}%#%b%f%k "
+  local components=(
     "%B%(?.%F{blue}>.%F{red}%?)"
-    "%B%F{white}%n%B%F{blue}@%B%F{yellow}${SINK_IP}"
-    "%B%F{white}<- %B%F{cyan}${SOURCE_IP}"
+    "%B%F{white}%n%B%F{blue}@%B%F{yellow}${sink_ip}"
+    "%B%F{white}<- %B%F{cyan}${source_ip}"
     "%B%F{blue}<%B%F{white})"
   )
-  RPROMPT=${_RPROMPT_COMPONENTS[@]}
+  RPROMPT=${components[@]}
 }
 
-set-rprompt
+set-prompt:arch-sky
 
 # note that the ip addresses shown in RPROMPT are static, if you want
 # it to be dynamic, uncomment these 2 lines to add a precmd hook.
 #autoload -Uz add-zsh-hook
-#add-zsh-hook precmd set-rprompt
+#add-zsh-hook precmd set-prompt:arch-sky
 
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
