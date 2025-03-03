@@ -130,9 +130,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # command aliases
-alias ...="../.."
-alias ....="../../.."
-alias .....="../../../.."
+alias -g ...="../.."
+alias -g ....="../../.."
+alias -g .....="../../../.."
 alias d="dirs -v"
 alias l="ls -Fh"
 alias ll="ls -lFh"
